@@ -38,6 +38,9 @@ class Post(models.Model):
     def preview(self):
         return self.text[:124]+'...'
 
+    def __str__(self):
+        return f'{self.title}\n {self.text}'
+
 
 class PostCategory(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE)
@@ -57,3 +60,6 @@ class Comment(models.Model):
     def dislike(self):
         self.rating -= 1
         self.save()
+
+    def __str__(self):
+        return f'{self.user}\n {self.post}\n {self.text}'
