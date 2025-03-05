@@ -4,6 +4,7 @@
 /accounts/migrations/__pycache__/
 /posts/__pycache__/
 /posts/migrations/__pycache__/
+/posts/templatetags/__pycache__/
 /fpages/__pycache__/
 /templates/__pycache__/
 /templates/flatpages/__pycache__/
