@@ -31,7 +31,7 @@ class PostSearch(ListView):
     template_name = 'search.html'
     context_object_name = 'search'
     paginate_by = 10
-    paginate_orphans = 1
+    paginate_orphans = 2
 
     def get_queryset(self):
         queryset = super().get_queryset()
