@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 from .models import Post, Author, Category
 from .filters import PostFilter
+from .forms import PostForm
+from parameters import *
+from django.http import request
 
 class PostsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
@@ -46,3 +49,29 @@ class PostSearch(ListView):
         print(type(context['filterset']))
 
         return context
+
+class PostCreate(CreateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'post_edit.html'
+    context_object_name = 'news_create'
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        # print(cont)
+        # if 'article/' in f'{context['request']}':
+        #     post.type = post
+        # else:
+        #     post.type = news
+        return super().form_valid(form)
+
+# class ArticleCreate(CreateView):
+#     form_class = PostForm
+#     model = Post
+#     template_name = 'article_edit.html'
+#     context_object_name = 'article_create'
+#
+#     def form_valid(self, form):
+#         post = form.save(commit=False)
+#         post.type = post
+#         return super().form_valid(form)
