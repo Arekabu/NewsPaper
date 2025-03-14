@@ -43,9 +43,12 @@ class Post(models.Model):
         return f'{self.title}\n {self.text}'
 
     def get_absolute_url(self):
-        return str(self.id)
-        # return reverse('post_detail', args=[str(self.id)])
-
+        print(self.__dict__)
+        # if 'create/' in f'{self.request}':
+        #     path = str(self.id)
+        # else:
+        path = reverse('post_detail', args=[str(self.id)])
+        return path
 
 class PostCategory(models.Model):
     category = models.ForeignKey(Category, on_delete = models.CASCADE)

@@ -9,7 +9,7 @@ def current_time(format_string='%b %d %Y'):
 
 @register.simple_tag(takes_context=True)
 def object_title(context):
-    if 'article/' in f'{context['request']}':
+    if '/articles/' in f'{context['request']}':
        title = 'Статья'
     else:
        title = 'Новость'

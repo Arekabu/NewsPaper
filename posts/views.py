@@ -4,7 +4,7 @@ from .models import Post, Author, Category
 from .filters import PostFilter
 from .forms import PostForm
 from parameters import *
-from django.http import request
+from django.urls import reverse_lazy
 
 class PostsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
@@ -63,3 +63,13 @@ class PostCreate(CreateView):
             cur_post.type = post
 
         return super().form_valid(form)
+
+class PostUpdate(UpdateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'post_edit.html'
+
+class PostDelete(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('post_list')
