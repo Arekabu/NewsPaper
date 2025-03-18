@@ -5,6 +5,7 @@ from .filters import PostFilter
 from .forms import PostForm
 from parameters import *
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class PostsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
@@ -64,7 +65,7 @@ class PostCreate(CreateView):
 
         return super().form_valid(form)
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
