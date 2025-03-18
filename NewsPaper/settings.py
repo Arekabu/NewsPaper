@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 ]
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/news/'
+LOGIN_REDIRECT_URL = '/'
 
 SITE_ID = 1
 
@@ -158,3 +158,4 @@ ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_FORMS = {'signup': 'posts.forms.BasicSignupForm'}
