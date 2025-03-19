@@ -172,5 +172,10 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
+        'APP': {
+            'client_id': 'a4173234162d45c7a7ac17987a3d16b3',
+            'secret': '50650f0f2e564e2584553138aeca4fdf',
+            'key': ''
+        }
     }
 }
