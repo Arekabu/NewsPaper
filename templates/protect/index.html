@@ -5,10 +5,13 @@
 <div> Здесь может содержаться персональная информация для каждого пользователя </div>
 <br>
 {% if is_not_author %}
-<button> <a href="user/upgrade/"> Стать автором </a> </button>
+<form method="post" action="{% url 'upgrade' %}">
+    {% csrf_token %}
+    <button> <a type="submit""> Стать автором </a> </button>
+</form>
 {% endif %}
 <hr>
-<form method="post" action="{% url 'account_logout' %}">
+<form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
     <button type="submit">Выйти</button>
 </form>

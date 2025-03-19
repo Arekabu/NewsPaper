@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'fpages',
     'posts',
     'django_filters',
+    'protect',
+    'sign',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
