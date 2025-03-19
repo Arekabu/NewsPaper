@@ -163,19 +163,14 @@ ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_FORMS = {'signup': 'posts.forms.BasicSignupForm'}
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'yandex': {
-#         'SCOPE': [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         },
-#         'APP': {
-#             'client_id': '445203905372-4795quslkdgudvqbmn5aealksr4nnvsp.apps.googleusercontent.com',
-#             'secret': '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',
-#             'key': ''
-#         }
-#     }
-# }
+SOCIALACCOUNT_PROVIDERS = {
+    'yandex': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+    }
+}
