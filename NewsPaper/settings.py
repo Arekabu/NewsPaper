@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wbp0_5e((=s8gkob(6@9c$m4-4gu!5n0%zonc=u%54o7tmodc7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
