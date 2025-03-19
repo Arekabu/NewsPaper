@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 from .views import BaseRegisterView, upgrade_me
 
@@ -14,5 +14,5 @@ urlpatterns = [
          name='signup'),
     path('upgrade/',
          upgrade_me,
-         name = 'upgrade')
+         name = 'upgrade'),
 ]

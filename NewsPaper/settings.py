@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.yandex',
 ]
 
 LOGIN_URL = '/accounts/login/'
@@ -156,8 +157,25 @@ STATICFILES_DIRS = [
 # ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_UNIQUE_EMAIL = True
-# ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = False
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_FORMS = {'signup': 'posts.forms.BasicSignupForm'}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'yandex': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'APP': {
+            'client_id': '445203905372-4795quslkdgudvqbmn5aealksr4nnvsp.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
