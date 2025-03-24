@@ -16,8 +16,14 @@ class Author(models.Model):
         self.rating = a_posts_rating['rating__sum'] * 3 + a_comments_rating['rating__sum'] + a_posts_comments_rating['rating__sum']
         self.save()
 
+    def __str__(self):
+        return f'{self.user}'
+
 class Category(models.Model):
     name = models.CharField(max_length = 255, unique = True)
+
+    def __str__(self):
+        return f'{self.name}'
 
 class Post(models.Model):
     author = models.ForeignKey(Author, on_delete = models.CASCADE)
@@ -43,10 +49,6 @@ class Post(models.Model):
         return f'{self.title}\n {self.text}'
 
     def get_absolute_url(self):
-        print(self.__dict__)
-        # if 'create/' in f'{self.request}':
-        #     path = str(self.id)
-        # else:
         path = reverse('post_detail', args=[str(self.id)])
         return path
 
