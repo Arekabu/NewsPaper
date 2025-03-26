@@ -10,4 +10,4 @@
 /templates/flatpages/__pycache__/
 /protect/__pycache__/
 /sign/__pycache__/
-.env
+/.env
