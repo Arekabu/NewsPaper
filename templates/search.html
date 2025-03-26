@@ -12,7 +12,9 @@
         {{ filterset.form.as_p }}
         <input type="submit" value="Найти" /><br>
         <br>
-        <a href="{% url 'subscribe_me' filterset.data %}">Подписаться на выбранные категории</a>
+        {% if categories %}
+        <a href="{% url 'subscribe_me' %}?{{categories}}" class="btn btn-secondary btn-md">Подписаться на выбранные категории</a>
+        {% endif %}
     </form>
 
 <hr>

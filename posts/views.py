@@ -47,11 +47,14 @@ class PostSearch(ListView):
         context = super().get_context_data(**kwargs)
         # Добавляем в контекст объект фильтрации.
         context['filterset'] = self.filterset
-        # context['is_not_subscriber'] = self.user not in self.category.subscribers.all()
-        # for post in self.object_list:
-        # print(self.request.GET.getlist('category'))
-        print('-------------НАЧАЛО ТУТ-------------')
-        print(context['filterset'].data.getlist('category'))
+        categories = self.filterset.data.getlist('category')
+        get_cat = ''
+        for i in categories:
+            if i == categories[0]:
+                get_cat += f'category={i}'
+            else:
+                get_cat += f'&category={i}'
+        context['categories'] = get_cat
         return context
 
 class PostCreate(PermissionRequiredMixin, CreateView):
@@ -81,11 +84,17 @@ class PostDelete(DeleteView):
     success_url = reverse_lazy('post_list')
 
 @login_required
-def subscribe(request, data):
+def subscribe(request):
     user = request.user
-    categories = [int(i) for i in data.getlist('category')]
+    categories = [int(i) for i in request.GET.getlist('category')]
+    print_cat = ''
     for c_pk in categories:
-        Category.objects.get(id=c_pk).add(user)
-    message = 'Вы успешно подписались на выбранные категории!'
-    print(data)
+        curr_cat = Category.objects.get(id=c_pk)
+        curr_cat.subscribers.add(user)
+        if c_pk == categories[-1]:
+            print_cat += f'\n {curr_cat.name}.'
+        else:
+            print_cat += f'\n {curr_cat.name},'
+    message = f'Вы успешно подписались на следующие категории:{print_cat}'
+    print(message)
     return render(request, 'subscribe.html', {'categories':categories, 'message': message})
