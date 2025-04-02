@@ -7,6 +7,7 @@ from parameters import *
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
+from .tasks import new_post_notification
 
 class PostsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
@@ -69,6 +70,9 @@ class PostCreate(PermissionRequiredMixin, CreateView):
             cur_post.type = news
         else:
             cur_post.type = post
+        # # cur_post.save()
+        #
+        # new_post_notification.apply_async(cur_post.pk)
 
         return super().form_valid(form)
 
