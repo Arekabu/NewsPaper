@@ -1,0 +1,17 @@
+2025-05-13 12:42:27,890 INFO autoreload Watching for file changes with StatReloader
+2025-05-13 12:43:57,589 INFO basehttp "GET / HTTP/1.1" 200 2364
+2025-05-13 12:44:03,095 INFO basehttp "GET /news HTTP/1.1" 301 0
+2025-05-13 12:44:03,144 INFO basehttp "GET /news/ HTTP/1.1" 200 6858
+2025-05-13 12:44:38,624 WARNING log Not Found: /news/100
+2025-05-13 12:44:38,625 WARNING basehttp "GET /news/100 HTTP/1.1" 404 3133
+2025-05-13 12:44:55,065 INFO basehttp "GET /news/10 HTTP/1.1" 200 2224
+2025-05-13 12:48:23,279 INFO autoreload Watching for file changes with StatReloader
+2025-05-13 12:48:43,935 WARNING log Not Found: /about/
+2025-05-13 12:48:43,936 WARNING basehttp "GET /about/ HTTP/1.1" 404 3029
+2025-05-13 12:49:58,430 INFO autoreload Watching for file changes with StatReloader
+2025-05-13 12:50:10,027 INFO basehttp "GET /news/ HTTP/1.1" 200 6858
+2025-05-13 12:50:44,100 INFO basehttp "GET /articles/65 HTTP/1.1" 200 3978
+2025-05-13 12:51:08,230 WARNING log Not Found: /about/
+2025-05-13 12:51:08,231 WARNING basehttp "GET /about/ HTTP/1.1" 404 3029
+2025-05-13 15:28:36,955 INFO autoreload Watching for file changes with StatReloader
+2025-05-13 15:44:05,300 INFO autoreload Watching for file changes with StatReloader
