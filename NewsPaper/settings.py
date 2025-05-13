@@ -298,23 +298,23 @@ LOGGING = {
         },
         'django.request': {
             'handlers': ['file_errors', 'mail_admins'],
-            'propagate': False,
+            'propagate': True,
         },
         'django.server': {
             'handlers': ['file_errors', 'mail_admins'],
-            'propagate': False,
+            'propagate': True,
         },
         'django.template': {
             'handlers': ['file_errors'],
-            'propagate': False,
+            'propagate': True,
         },
         'django.db.backends': {
             'handlers': ['file_errors'],
-            'propagate': False,
+            'propagate': True,
         },
         'django.security': {
             'handlers': ['file_security'],
-            'propagate': False,
+            'propagate': True,
         },
     },
 }
