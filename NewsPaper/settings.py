@@ -51,18 +51,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'fpages',
-    'posts.apps.NewsConfig',
+    'django_apscheduler',
     'django_filters',
-    'protect',
-    'sign',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.yandex',
-    'django_apscheduler',
+    'fpages',
+    'posts.apps.NewsConfig',
+    'protect',
+    'sign',
 ]
 
 LOGIN_URL = '/accounts/login/'
@@ -81,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     # Add the account middleware:
     'allauth.account.middleware.AccountMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'NewsPaper.urls'
@@ -160,6 +161,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     BASE_DIR / "posts",
 ]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
 
 # ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
