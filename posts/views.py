@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
-from .models import Post, Author, Category
-from .filters import PostFilter
-from .forms import PostForm
-from parameters import *
+from django.core.cache import cache
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .tasks import new_post_notification
-from django.core.cache import cache
+from .models import Post, Author, Category
+from .filters import PostFilter
+from .forms import PostForm
+from NewsPaper.parameters import news, post, POST_TYPES
+
 
 class PostsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
