@@ -1,14 +1,16 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView, View
 from django.core.cache import cache
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.utils.translation import gettext as _
 from .tasks import new_post_notification
-from .models import Post, Author, Category
+from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
-from NewsPaper.parameters import news, post, POST_TYPES
+from parameters import news, post
 
 
 class PostsList(ListView):
@@ -25,6 +27,7 @@ class PostsList(ListView):
     paginate_by = 10
     paginate_orphans = 2
 
+
 class PostDetail(DetailView):
     # Модель всё та же, но мы хотим получать информацию по отдельному товару
     model = Post
@@ -40,6 +43,7 @@ class PostDetail(DetailView):
             cache.set(f'post-{self.kwargs["pk"]}', obj)
 
         return obj
+
 
 class PostSearch(ListView):
     model = Post
@@ -68,6 +72,7 @@ class PostSearch(ListView):
         context['categories'] = get_cat
         return context
 
+
 class PostCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('posts.add_post',)
     form_class = PostForm
@@ -86,16 +91,19 @@ class PostCreate(PermissionRequiredMixin, CreateView):
 
         return super().form_valid(form)
 
+
 class PostUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     permission_required = ('posts.change_post',)
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
 
+
 class PostDelete(DeleteView):
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('post_list')
+
 
 @login_required
 def subscribe(request):
@@ -112,3 +120,10 @@ def subscribe(request):
     message = f'Вы успешно подписались на следующие категории:{print_cat}'
     print(message)
     return render(request, 'subscribe.html', {'categories':categories, 'message': message})
+
+
+class Index(View):
+    def get(self, request):
+        string = _('Hello World')
+
+        return HttpResponse(string)
