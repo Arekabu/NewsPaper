@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-19 10:58+0300\n"
+"POT-Creation-Date: 2025-05-19 21:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,21 +19,155 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-
 #: .\NewsPaper\settings.py:145
 msgid "Russian"
-msgstr "Русский"
+msgstr ""
 
 #: .\NewsPaper\settings.py:146
 msgid "English"
-msgstr "Английский"
+msgstr ""
 
 #: .\fpages\admin.py:11
 msgid "Advanced options"
-msgstr "Расширенные параметры"
+msgstr ""
+
+#: .\posts\filters.py:8
+msgid "Заголовок новости содержит:"
+msgstr ""
+
+#: .\posts\filters.py:9
+msgid "Автор новости:"
+msgstr ""
+
+#: .\posts\filters.py:10
+msgid "Дата новости позже:"
+msgstr ""
+
+#: .\posts\filters.py:11
+msgid "Категория:"
+msgstr ""
 
 #: .\posts\views.py:127
-#, fuzzy
-#| msgid "Hello World!"
 msgid "Hello World"
 msgstr "Привет мир"
+
+#: .\templates\daily_post.html:6 .\templates\post_created_email.html:7
+msgid "Уведомление"
+msgstr ""
+
+#: .\templates\daily_post.html:9
+msgid "Здравствуйте! Новые статьи за последнюю неделю:"
+msgstr ""
+
+#: .\templates\news.html:7 .\templates\search.html:8
+msgid "Новости"
+msgstr ""
+
+#: .\templates\news.html:11 .\templates\search.html:12
+msgid "Новостей на странице:"
+msgstr ""
+
+#: .\templates\news.html:16 .\templates\search.html:28
+msgid "Заголовок"
+msgstr ""
+
+#: .\templates\news.html:17 .\templates\search.html:29
+msgid "Дата"
+msgstr ""
+
+#: .\templates\news.html:18 .\templates\search.html:30
+msgid "Превью"
+msgstr ""
+
+#: .\templates\news.html:30 .\templates\search.html:42
+msgid "Новостей нет!"
+msgstr ""
+
+#: .\templates\news.html:33 .\templates\search.html:45
+msgid "Актуально на:"
+msgstr ""
+
+#: .\templates\post.html:6
+msgid "Пост"
+msgstr ""
+
+#: .\templates\post.html:11
+msgid "Дата публикации:"
+msgstr ""
+
+#: .\templates\post_created_email.html:10
+msgid "Здравствуй"
+msgstr ""
+
+#: .\templates\post_created_email.html:10
+msgid "Новая"
+msgstr ""
+
+#: .\templates\post_created_email.html:10
+msgid "статья"
+msgstr ""
+
+#: .\templates\post_created_email.html:10
+msgid "в твоём любимом разделе!"
+msgstr ""
+
+#: .\templates\post_delete.html:6
+msgid "Удаление статьи"
+msgstr ""
+
+#: .\templates\post_delete.html:8
+msgid "Удаление новости"
+msgstr ""
+
+#: .\templates\post_delete.html:13
+msgid "Удаляем"
+msgstr ""
+
+#: .\templates\protect\index.html:5
+msgid "Страница авторизованного пользователя"
+msgstr ""
+
+#: .\templates\protect\index.html:6
+msgid ""
+"Здесь может содержаться персональная информация для каждого пользователя"
+msgstr ""
+
+#: .\templates\protect\index.html:11
+msgid "Стать автором"
+msgstr ""
+
+#: .\templates\protect\index.html:17
+msgid "Выйти"
+msgstr ""
+
+#: .\templates\search.html:16
+msgid "Найти"
+msgstr ""
+
+#: .\templates\search.html:20
+msgid "Подписаться на выбранные категории"
+msgstr ""
+
+#: .\templates\sign\login.html:5
+msgid "Войти в систему"
+msgstr ""
+
+#: .\templates\sign\login.html:19
+msgid "Войти"
+msgstr ""
+
+#: .\templates\sign\login.html:22 .\templates\sign\signup.html:6
+msgid "Регистрация"
+msgstr ""
+
+#: .\templates\sign\logout.html:5
+msgid "Вы вышли из системы"
+msgstr ""
+
+#: .\templates\sign\signup.html:10
+msgid "Продолжить"
+msgstr ""
+
+#: .\templates\sign\signup.html:13
+msgid "Зарегистрироваться через Яндекс"
+msgstr ""
