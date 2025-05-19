@@ -26,4 +26,5 @@ urlpatterns = [
     path('sign/', include('sign.urls')),
     path('accounts/', include('allauth.urls')),
     path('index/', Index.as_view(), name='post_index'),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
