@@ -16,7 +16,7 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Django flatpages</a>
+                <a class="navbar-brand" href="/news/">{%trans 'НОВОСТИ' %}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarResponsive"
                         aria-controls="navbarResponsive" aria-expanded="false"
@@ -26,12 +26,10 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
+                            <a class="nav-link" href="/news/search">{%trans 'Фильтр' %}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about/">About</a>
+                            <a class="nav-link" href="/protect/index">{%trans 'Страница пользователя' %}</a>
                         </li>
                         <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %}
                             <input type="hidden" name="next" value="{{ redirect_to }}">
@@ -45,11 +43,24 @@
                                         </option>
                                     {% endfor %}
                                 </select>
-                            <input type="submit" value="set">
+                                &nbsp;&nbsp;
+                                <input type="submit" value="{%trans 'Установить' %}" style="float: right;">
                         </form>
                     </ul>
                 </div>
             </div>
+            {% if request.user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">{%trans 'Выйти' %}</button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <button type="submit">{%trans 'Войти' %}</button>
+                </form>
+            {% endif %}
+            &nbsp;&nbsp;&nbsp;
         </nav>
         <!-- Page content-->
         <div class="container">

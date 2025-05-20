@@ -67,7 +67,7 @@ INSTALLED_APPS = [
 ]
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/protect/index'
 
 SITE_ID = 1
 
@@ -142,8 +142,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
-    ("ru", _("Russian")),
-    ("en", _("English")),
+    ("ru", _("Русский")),
+    ("en", _("Английский")),
 ]
 
 TIME_ZONE = 'UTC'
