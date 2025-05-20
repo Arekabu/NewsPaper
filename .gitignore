@@ -13,4 +13,5 @@
 /protect/migrations/__pycache__/
 /sign/__pycache__/
 /sign/migrations/__pycache__/
+basic/__pycache__/
 .env

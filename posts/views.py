@@ -6,11 +6,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.utils.translation import gettext as _
+from django.utils import timezone
+from django.shortcuts import redirect
 from .tasks import new_post_notification
 from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
 from parameters import news, post
+import pytz
 
 
 class PostsList(ListView):
@@ -26,6 +29,18 @@ class PostsList(ListView):
     context_object_name = 'news'
     paginate_by = 10
     paginate_orphans = 2
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['timezones'] = pytz.common_timezones
+        context['current_time'] = timezone.now()
+
+        return context
+
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+
+        return redirect(request.path)
 
 
 class PostDetail(DetailView):

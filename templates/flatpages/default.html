@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load i18n %}
+{% load tz %}
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -14,6 +15,7 @@
     </head>
     <body>
         <!-- Responsive navbar-->
+        {% get_current_timezone as TIME_ZONE %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container">
                 <a class="navbar-brand" href="/news/">{%trans 'НОВОСТИ' %}</a>
@@ -32,9 +34,33 @@
                             <a class="nav-link" href="/protect/index">{%trans 'Страница пользователя' %}</a>
                         </li>
                     </ul>
+                    <div style="color: white;">
+                        {{ TIME_ZONE }}
+                        {{ current_time|timezone:TIME_ZONE }}
+                    </div>
                 </div>
             </div>
-            <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %}
+
+
+            <form class="d-flex" action="" method="POST">
+                {% csrf_token %}
+                <div style="color: white;">
+                    <label for="_tz">Часовой пояс:</label>
+                </div>
+                <select name="timezone" id="_tz">
+                    {% for tz in timezones %}
+                        <option value="{{ tz }}"{% if tz == TIME_ZONE %}selected{% endif %}>{{ tz }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Установить">
+            </form>
+
+            &nbsp;
+            <div style="color: white;">
+                <label for="_lang">Язык:</label>
+            </div>
+            <form action="{% url 'set_language' %}" method="POST" id="_lang">
+                {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_to }}">
                     <select name="language" id="">
                         {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
@@ -46,10 +72,9 @@
                             </option>
                         {% endfor %}
                     </select>
-                    &nbsp;&nbsp;
                 <input type="submit" value="{%trans 'Установить' %}" style="float: right;">
             </form>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             {% if request.user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
@@ -61,7 +86,7 @@
                     <button type="submit">{%trans 'Войти' %}</button>
                 </form>
             {% endif %}
-            &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
         </nav>
         <!-- Page content-->
         <div class="container">
