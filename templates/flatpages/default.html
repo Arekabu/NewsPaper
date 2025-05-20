@@ -34,59 +34,57 @@
                             <a class="nav-link" href="/protect/index">{%trans 'Страница пользователя' %}</a>
                         </li>
                     </ul>
+                </div>
+                <span class="navbar-text">
                     <div style="color: white;">
                         {{ TIME_ZONE }}
                         {{ current_time|timezone:TIME_ZONE }}
                     </div>
-                </div>
+                </span>
             </div>
-
-
-            <form class="d-flex" action="" method="POST">
-                {% csrf_token %}
-                <div style="color: white;">
-                    <label for="_tz">Часовой пояс:</label>
-                </div>
-                <select name="timezone" id="_tz">
-                    {% for tz in timezones %}
-                        <option value="{{ tz }}"{% if tz == TIME_ZONE %}selected{% endif %}>{{ tz }}</option>
-                    {% endfor %}
-                </select>
-                <input type="submit" value="Установить">
-            </form>
-
-            &nbsp;
-            <div style="color: white;">
-                <label for="_lang">Язык:</label>
-            </div>
-            <form action="{% url 'set_language' %}" method="POST" id="_lang">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ redirect_to }}">
-                    <select name="language" id="">
-                        {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
-                        {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
-                            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-                                {{ language.name_local }} - {{ language.code }}
-                            </option>
+            <div class="container">
+                <form class="row g-3" action="" method="POST">
+                    {% csrf_token %}
+                    <div style="color: white;">
+                        <label for="_tz">Часовой пояс:</label>
+                    </div>
+                    <select name="timezone" id="_tz" class="form-select form-select-sm">
+                        {% for tz in timezones %}
+                            <option value="{{ tz }}"{% if tz == TIME_ZONE %}selected{% endif %}>{{ tz }}</option>
                         {% endfor %}
                     </select>
-                <input type="submit" value="{%trans 'Установить' %}" style="float: right;">
-            </form>
-            &nbsp;&nbsp;
-            {% if request.user.is_authenticated %}
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">{%trans 'Выйти' %}</button>
+                    <input type="submit" value="Установить">
                 </form>
-            {% else %}
-                <form method="post" action="{% url 'login' %}">
+                <form class="row g-3" action="{% url 'set_language' %}" method="POST" id="_lang">
                     {% csrf_token %}
-                    <button type="submit">{%trans 'Войти' %}</button>
-                </form>
-            {% endif %}
-            &nbsp;&nbsp;
+                    <div style="color: white;">
+                        <label for="_lang">Язык:</label>
+                    </div>
+                    <input type="hidden" name="next" value="{{ redirect_to }}">
+                        <select name="language" id="_lang">
+                            {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+                            {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                                    {{ language.name_local }} - {{ language.code }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    <input type="submit" value="{%trans 'Установить' %}" style="float: right;">
+                </form>                &nbsp;&nbsp;
+                {% if request.user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">{%trans 'Выйти' %}</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <button type="submit">{%trans 'Войти' %}</button>
+                    </form>
+                {% endif %}
+            </div>&nbsp;&nbsp;
         </nav>
         <!-- Page content-->
         <div class="container">
