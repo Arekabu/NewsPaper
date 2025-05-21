@@ -460,3 +460,18 @@ Traceback (most recent call last):
     )
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 64: ''Установить'', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
 2025-05-21 10:56:04,082 ERROR "GET /articles/ HTTP/1.1" 500 278491 %(pathname)s None
+2025-05-21 15:42:03,197 ERROR Internal Server Error: / %(pathname)s (<class 'TypeError'>, TypeError("PostsList.get_context_data() missing 1 required positional argument: 'request'"), <traceback object at 0x000001D45FE5B200>)
+Traceback (most recent call last):
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\views\generic\list.py", line 174, in get
+    context = self.get_context_data()
+TypeError: PostsList.get_context_data() missing 1 required positional argument: 'request'
+2025-05-21 15:42:03,201 ERROR "GET / HTTP/1.1" 500 80167 %(pathname)s None
