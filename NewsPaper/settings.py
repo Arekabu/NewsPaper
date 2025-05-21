@@ -9,11 +9,9 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import logging
 import os
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
-
 import django.utils.log
 from dotenv import load_dotenv
 
