@@ -493,3 +493,19 @@ Traceback (most recent call last):
           ~~~~~~~~~~~~^^^^
 TypeError: now() takes 0 positional arguments but 1 was given
 2025-05-21 17:00:55,293 ERROR "GET / HTTP/1.1" 500 90044 %(pathname)s None
+2025-05-22 12:10:01,435 ERROR Internal Server Error: /articles/time_zone/ %(pathname)s (<class 'TypeError'>, TypeError("'dict' object is not callable"), <traceback object at 0x0000028304E7ABC0>)
+Traceback (most recent call last):
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "S:\STUDY\PycharmProjects\Django-projects\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "S:\STUDY\PycharmProjects\Django-projects\NewsPaper\posts\views.py", line 153, in post
+    return redirect(request.META('HTTP_REFERER'))
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+TypeError: 'dict' object is not callable
+2025-05-22 12:10:01,438 ERROR "POST /articles/time_zone/ HTTP/1.1" 500 79815 %(pathname)s None
