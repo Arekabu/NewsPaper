@@ -1,0 +1,118 @@
+openapi: 3.0.2
+info:
+  title: 'News Paper'
+  version: "0.1"
+paths:
+  /news/:
+    get:
+      operationId: listNews
+      description: 'List of News'
+      parameters:
+        - name: type
+          in: query
+          description: Тип статей (post, news)
+          required: true
+          schema:
+            type: string
+            enum: [ news, post ]  # Ограничение значений
+            default: news  # Значение по умолчанию
+      responses:
+        '200':
+          description: Список постов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+      tags:
+        - News
+    post:
+      operationId: createPost
+      description: 'Create Post'
+      parameters: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                author:
+                  type: integer
+                  example: 1
+                type:
+                  type: string
+                  enum: [ news, post ]
+                  default: news
+                category:
+                  type: array
+                  items:
+                    type: integer
+                  example: [ 1, 2 ]
+                title:
+                  type: string
+                  example: "Новый пост"
+                text:
+                  type: string
+                  example: "Текст..."
+              required:
+                - author
+                - title
+                - text
+      responses:
+        '201':
+          description: Пост создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+      tags:
+        - News
+
+components:
+  schemas:
+    Post:
+      type: object
+      required:
+        - author
+        - type
+        - title
+        - text
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+        author:
+          type: integer
+          description: ID автора
+          example: 1
+        type:
+          type: string
+          enum: [news, post]
+          default: news
+          description: Тип поста
+        date:
+          type: string
+          format: date-time
+          readOnly: true
+          example: "2023-10-25T14:30:00Z"
+        category:
+          type: array
+          items:
+            type: integer
+          description: IDs категорий
+          example: [1, 2]
+        title:
+          type: string
+          maxLength: 255
+          example: "Заголовок новости"
+        text:
+          type: string
+          example: "Текст поста..."
+        rating:
+          type: integer
+          minimum: 0
+          default: 0
+          example: 5
