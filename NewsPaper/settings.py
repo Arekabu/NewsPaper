@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'posts.apps.NewsConfig',
     'protect',
     'sign',
+    'rest_framework',
 ]
 
 LOGIN_URL = '/accounts/login/'
