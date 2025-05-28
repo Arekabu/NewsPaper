@@ -12,6 +12,8 @@ from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
 from parameters import news, post
+from rest_framework import viewsets, permissions
+from .serializers import *
 
 
 class PostsList(ListView):
@@ -28,18 +30,17 @@ class PostsList(ListView):
     paginate_by = 10
     paginate_orphans = 2
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['timezones'] = pytz.common_timezones
-    #     context['current_time'] = datetime.now(timezone.get_current_timezone())
-    #
-    #     return context
+    def get_queryset(self):
+        queryset = super().get_queryset()
 
-    # def post(self, request):
-    #     request.session['django_timezone'] = request.POST['timezone']
-    #
-    #     # return redirect(request.path)
-    #     return redirect('/')
+        path = self.request.path
+
+        if 'news' in path:
+            queryset = queryset.filter(type=news)
+        elif 'articles' in path:
+            queryset = queryset.filter(type=post)
+
+        return queryset
 
 
 class PostDetail(DetailView):
@@ -142,6 +143,7 @@ class Index(View):
 
         return HttpResponse(string)
 
+
 class SharedContext(View):
     def post(self, request):
         request.session['django_timezone'] = request.POST['timezone']
@@ -149,3 +151,8 @@ class SharedContext(View):
 
         next_url = request.POST.get('next', '/')
         return redirect(next_url)
+
+
+class PostViewset(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer

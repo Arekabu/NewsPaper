@@ -166,6 +166,46 @@ paths:
           description: ''
       tags:
       - authors
+  /news/:
+    get:
+      operationId: ListOfNews
+      description: ''
+      parameters:
+        - name: title
+          in: path
+          required: false
+          description: Title of post (icontains).
+          schema:
+            type: string
+        - name: author
+          in: path
+          required: false
+          description: Author's username.
+          schema:
+            type: string
+        - name: date
+          in: path
+          required: false
+          description: Date of post (later then).
+          schema:
+            type: date
+        - category: id
+          in: path
+          required: false
+          description: Id of post's category.
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: ''
+      tags:
+        - ListOfNews
+
+
 components:
   schemas:
     Author:
@@ -173,3 +213,42 @@ components:
       properties:
         rating:
           type: integer
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+        author:
+          type: integer
+          description: ID автора
+          example: 1
+        type:
+          type: string
+          enum: [ news, post ]
+          default: news
+          description: Тип поста
+        date:
+          type: string
+          format: date-time
+          readOnly: true
+          example: "2023-10-25T14:30:00Z"
+        category:
+          type: array
+          items:
+            type: integer
+          description: IDs категорий
+          example: [ 1, 2 ]
+        title:
+          type: string
+          maxLength: 255
+          example: "Заголовок новости"
+        text:
+          type: string
+          example: "Текст поста..."
+        rating:
+          type: integer
+          minimum: 0
+          default: 0
+          example: 5
